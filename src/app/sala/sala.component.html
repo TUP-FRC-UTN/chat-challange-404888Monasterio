@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="container" >
+        <div class="card my-3">
+            <p class="card-header">Sala de chat</p>
+            <div class="card-body d-flex flex-column-reverse overflow-y-scroll" style="max-height: 50vh;">
+                @if (listaMensajes.length < 1) {
+                    <h5>Conversación</h5>
+                }
+                @for (mensaje of listaMensajes; track mensaje) {
+                    <p>
+                        <span [style.color]="mensaje.usuario.color">{{mensaje.usuario.nombre}}: </span>
+                        {{mensaje.contenido}}
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container gap-0 column-gap-3">
+        <div class="row">        
+            @for (usuario of listaUsuarios; track usuario) {
+                <div class="col">
+                    <app-mensaje-usuario [usuario]="usuario" (mensajeEnviado)="onMensajeRecibido($event)"></app-mensaje-usuario>
+                </div>
+            }
+        </div>
+    </div>
+</div>
